@@ -18,8 +18,10 @@ export default {
 			console.log("key:", key);
 
 			var requestPath;
-			if (key == "docs/axoflow") {
+			if (key == "docs/axoflow/") {
 				requestPath = "index.html";
+			} else {
+				requestPath = key;
 			}
 
 			const object = await env.MY_BUCKET.get(requestPath);
