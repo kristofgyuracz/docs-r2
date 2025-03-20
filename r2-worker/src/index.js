@@ -18,8 +18,8 @@ export default {
 			console.log("key:", key);
 
 			var requestPath;
-			if (key == "docs/axoflow/") {
-				requestPath = "index.html";
+			if (key[key.length - 1] == "/") {
+				requestPath = key + "index.html";
 			} else {
 				requestPath = key;
 			}
