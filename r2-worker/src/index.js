@@ -24,19 +24,29 @@ export default {
 				requestPath = key;
 			}
 
-			const object = await env.MY_BUCKET.get(requestPath);
+			var object = await env.MY_BUCKET.get(requestPath);
+			var headers = new Headers();
 
-			if (object === null) {
-				return new Response("Object Not Found", { status: 404 });
+
+			if (object !== null) {
+				object.writeHttpMetadata(headers);
+				headers.set("etag", object.httpEtag);
+				return new Response(object.body, {
+					headers,
+				});
 			}
 
-			const headers = new Headers();
-			object.writeHttpMetadata(headers);
-			headers.set("etag", object.httpEtag);
+			requestPath = requestPath + "/index.html";
+			object = await env.MY_BUCKET.get(requestPath);
+			if (object !== null) {
+				object.writeHttpMetadata(headers);
+				headers.set("etag", object.httpEtag);
+				return new Response(object.body, {
+					headers,
+				});
+			}
 
-			return new Response(object.body, {
-				headers,
-			});
+			return new Response("Object Not Found", { status: 404 });
 		}
 		else {
 			return new Response("Method Not Allowed", {
