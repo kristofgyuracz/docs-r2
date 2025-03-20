@@ -17,6 +17,10 @@ export default {
 			console.log("url:", url);
 			console.log("key:", key);
 
+			if (key == "docs/axoflow") {
+				key = "index.html";
+			}
+
 			const object = await env.MY_BUCKET.get(key);
 
 			if (object === null) {
