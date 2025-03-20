@@ -31,6 +31,7 @@ export default {
 			if (object !== null) {
 				object.writeHttpMetadata(headers);
 				headers.set("etag", object.httpEtag);
+				headers.set("content-type", object.httpContentType);
 				return new Response(object.body, {
 					headers,
 				});
@@ -41,6 +42,7 @@ export default {
 			if (object !== null) {
 				object.writeHttpMetadata(headers);
 				headers.set("etag", object.httpEtag);
+				headers.set("content-type", object.httpContentType);
 				return new Response(object.body, {
 					headers,
 				});
