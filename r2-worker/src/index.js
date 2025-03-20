@@ -14,6 +14,9 @@ export default {
 		const key = url.pathname.slice(1);
 
 		if (request.method === "GET") {
+			console.log("url:", url);
+			console.log("key:", key);
+
 			const object = await env.MY_BUCKET.get(key);
 
 			if (object === null) {
