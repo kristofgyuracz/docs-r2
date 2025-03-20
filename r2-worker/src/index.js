@@ -17,11 +17,12 @@ export default {
 			console.log("url:", url);
 			console.log("key:", key);
 
+			var requestPath;
 			if (key == "docs/axoflow") {
-				key = "index.html";
+				requestPath = "index.html";
 			}
 
-			const object = await env.MY_BUCKET.get(key);
+			const object = await env.MY_BUCKET.get(requestPath);
 
 			if (object === null) {
 				return new Response("Object Not Found", { status: 404 });
