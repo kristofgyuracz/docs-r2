@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "r2-worker",
+	"name": "axosyslog-core-docs-r2",
 	"main": "src/index.js",
 	"compatibility_date": "2025-03-17",
 	"observability": {
